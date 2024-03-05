@@ -58,18 +58,24 @@ app.post("/beta/v4", (req, res) => {
     stream: true,
   });
   stream.on('content', (delta, snapshot) => {
-    console.log("response:"+delta)
+    console.log("delta:"+delta)
     res.write(delta);
   });
+stream.on('finalChatCompletion', (completion) => {
+	console.log("it ends")
+	console.log(JSON.stringify(completion))
+	res.end();
+})
   //
   res.on("close", () => {
     //clearInterval(interval);
+stream.abort()
     console.log("close")
     res.end();
   });
 });
 
 port = config.get("env")["port"]
-app.listen( () => {port,
+app.listen(port, () => {
   console.log(`Server is up and running at port ${port}`);
 });
