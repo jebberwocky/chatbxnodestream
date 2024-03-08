@@ -35,6 +35,9 @@ app.use(expressWinston.errorLogger({
   )
 }));
 
+const groqRoutes = require("./route/groq")
+app.use("/groq", groqRoutes)
+
 app.get("/status", (req, res) =>{
 	res.json({"s":"ok"})
 })
@@ -44,6 +47,8 @@ app.post("/beta/v4", (req, res) => {
   //set streaming headers
   res.set({
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Headers": "*",
     "Cache-Control": "no-cache",
     "Connection": "keep-alive", // allowing TCP connection to remain open for multiple HTTP requests/responses
     "Content-Type": "text/event-stream", // media type for Server Sent Events (SSE)
