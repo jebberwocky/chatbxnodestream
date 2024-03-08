@@ -3,7 +3,7 @@ rewrite the chatbx backend for streaming
 
 ## config
 ./config/default.json
-'''
+```
 {
     "logs":{"filename":"logs/all.log"},
     "service-logs":{"filename":"logs/service-log.log" },
@@ -16,4 +16,4 @@ rewrite the chatbx backend for streaming
         "apiKey":"MASKED"
     }
 }
-'''
+```
